@@ -1,0 +1,39 @@
+import random
+num_players=int(input("Enter the number of players: "))
+list_players=[]
+list_sums=[]
+for n in range(num_players):
+    list_players.append(input(f"Enter the name of player {n+1}:"))
+    list_sums.append(0)
+print(list_sums)
+def Players_Turn():
+    sum=0
+    while True:
+        rnd=random.randint(1,6)
+        print("Do you want to continue:(Y/N)")
+        if input().lower()=="y":
+            if(rnd!=1):
+                sum+=rnd
+                print(f'You got a {rnd}')
+            else:
+                sum=0
+                print(f'You got a {rnd}')
+                break
+        else:
+            break
+    return sum
+    print(sum)
+max_score=50
+while max(list_sums)<=max_score:
+
+        for i in range(0,len(list_players)):
+            print(f"Player {list_players[i]}'s Turn")
+            num=Players_Turn()
+            list_sums[i]+=num
+            if max(list_sums) >= max_score: break
+            print("*"*15,'Results:',"*"*15,f'\n{list_players}\n{list_sums}')
+
+print("*"*15,'Results:',"*"*15,f'\n{list_players}\n{list_sums}')
+max_player=max(list_sums)
+win_idx=list_sums.index(max_player)
+print(f"Congratulations {list_players[win_idx]} won!!!")
